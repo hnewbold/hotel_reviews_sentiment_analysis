@@ -12,7 +12,7 @@
 5. [Contributors](#contributors)
 
 ## Introduction & Project Description
-This project involves analyzing the sentiment of hotel reviews using advanced natural language processing techniques. We leverage the BERT model, a large language model, through the Hugging Face Transformers library, and implement the analysis in TensorFlow. The project showcases skills in NLP, sentiment analysis, and using state-of-the-art tools for machine learning
+This project involves analyzing the sentiment of hotel reviews using advanced natural language processing techniques. We leverage the BERT model, a large language model, through the Hugging Face Transformers library, and implement the analysis in TensorFlow. 
 
 ## Model Structure
 ```python
