@@ -25,6 +25,8 @@ The result is a fine-tuned BERT model implemented in TensorFlow that can accurat
 ## Dataset
 The dataset for this project was sourced from Kaggle and consists of approximately 20,000 hotel reviews from TripAdvisor, with ratings ranging from 1 to 5. To ensure balanced representation across the three sentiment groups (positive, neutral, and negative), the dataset was further filtered down to 6,000 records. This balanced dataset includes an equal number of reviews for each sentiment group, providing a robust foundation for training and evaluating the sentiment analysis model.
 
+<img src="Rating Distributions.png" alt="ANN" width="500" height="300">
+
 ## Model Structure
 The following code defines the training arguments for fine-tuning the BERT model using the Hugging Face Transformers library. These arguments configure various aspects of the training process to ensure optimal model performance and efficient training:
 
