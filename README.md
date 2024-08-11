@@ -37,16 +37,13 @@ The following code defines the training arguments for fine-tuning the BERT model
 training_args = TrainingArguments(
     output_dir='./results',
     evaluation_strategy='epoch',
-    save_strategy='epoch', 
+    save_strategy='epoch',
     learning_rate=2e-5,
     per_device_train_batch_size=16,
     per_device_eval_batch_size=16,
-    num_train_epochs=5,  
+    num_train_epochs=5,
     weight_decay=0.01,
-    logging_dir='./logs',
-    logging_steps=10,
-    save_total_limit=1,
-    load_best_model_at_end=True,  
+    load_best_model_at_end=True,
 )
 
 ```
@@ -60,9 +57,7 @@ training_args = TrainingArguments(
 
 - **evaluation_strategy='epoch' & save_strategy='epoch'**: These settings ensure that the model is evaluated and checkpoints are saved at the end of every epoch. This allows continuous monitoring of the model's performance and ensures that the best version of the model, as judged by its performance on the evaluation set, is saved for future use.
 
-- **logging_steps=10: By setting logging_steps=10**, the model’s performance metrics are logged every 10 steps during training. This frequent logging helps monitor the training process closely, providing insights into how the model is learning over time.
-
-- **save_total_limit=1 & load_best_model_at_end=True**: These parameters are used to manage the storage of model checkpoints. **save_total_limit=1** ensures that only the most recent checkpoint is saved, conserving disk space. **load_best_model_at_end=True** ensures that the best-performing model, based on evaluation metrics, is loaded at the end of training, rather than just the final epoch's model.
+- **load_best_model_at_end=True**: ensures that the best-performing model, based on evaluation metrics, is loaded at the end of training, rather than just the final epoch's model.
 
 ## Training the model
 The following code defines the Trainer for fine-tuning the BERT model, incorporating early stopping to prevent overfitting
