@@ -20,7 +20,7 @@ This project analyzes the sentiment of hotel reviews using advanced Natural Lang
 ### Project Description
 The reviews are cleaned using the Natural Language Toolkit (nltk) to remove noise and standardize the text. This includes removing HTML tags, URLs, special characters, and stopwords, as well as lemmatizing the text for consistency.
 
-A pre-trained BERT model, accessed through the Hugging Face Transformers library, is fine-tuned using the cleaned hotel review data. This involves adjusting the model's parameters and training it further on the specific dataset to better capture the nuances of hotel review sentiments.
+A pre-trained Bidirectional Encoder Representations from Transformers (BERT) model, accessed through the Hugging Face Transformers library, is fine-tuned using the cleaned hotel review data. This involves adjusting the model's parameters and training it further on the specific dataset to better capture the nuances of hotel review sentiments.
 
 The result is a fine-tuned BERT model implemented in TensorFlow that can accurately predict the sentiment (positive, neutral, or negative) of hotel reviews. The final model achieves an accuracy of nearly 80%, demonstrating its effectiveness in classifying the sentiment of hotel reviews.
 
