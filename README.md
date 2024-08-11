@@ -14,8 +14,10 @@
 7. [Contributors](#contributors)
 
 ## Introduction & Project Description
+### Introduction
 This project analyzes the sentiment of hotel reviews using advanced Natural Language Processing (NLP) techniques. The dataset, sourced from Kaggle, contains hotel reviews from TripAdvisor.
 
+### Project Description
 The reviews are cleaned using the Natural Language Toolkit (nltk) to remove noise and standardize the text. This includes removing HTML tags, URLs, special characters, and stopwords, as well as lemmatizing the text for consistency.
 
 A pre-trained BERT model, accessed through the Hugging Face Transformers library, is fine-tuned using the cleaned hotel review data. This involves adjusting the model's parameters and training it further on the specific dataset to better capture the nuances of hotel review sentiments.
@@ -48,6 +50,19 @@ training_args = TrainingArguments(
 )
 
 ```
+- **learning_rate=2e-5**: The learning rate of 2e-5 was selected based on best practices for fine-tuning BERT models. BERT models are typically sensitive to learning rate changes, and 2e-5 is often found to be optimal for achieving a balance between training speed and model performance, minimizing the risk of overshooting the minimum loss.
+
+- **per_device_train_batch_size=16 & per_device_eval_batch_size=16**: A batch size of 16 was selected as it is a common convention for BERT models, striking a balance between training efficiency and memory usage.
+
+- **num_train_epochs=5**: BERT models typically converge quickly, often within a few epochs, but the model was allowed to train for up to 5 epochs to ensure thorough learning of the data's underlying patterns. An early stopping parameter was also incorporated to halt training if the model achieved optimal performance in fewer epochs.
+
+- **weight_decay=0.01**: Weight decay is applied to prevent overfitting by penalizing large weights. A value of 0.01 is a common choice in fine-tuning tasks, particularly with pre-trained models like BERT, where it helps maintain generalization while still allowing the model to adapt to the specific dataset.
+
+- **evaluation_strategy='epoch' & save_strategy='epoch'**: These settings ensure that the model is evaluated and checkpoints are saved at the end of every epoch. This allows continuous monitoring of the model's performance and ensures that the best version of the model, as judged by its performance on the evaluation set, is saved for future use.
+
+- **logging_steps=10: By setting logging_steps=10**, the model’s performance metrics are logged every 10 steps during training. This frequent logging helps monitor the training process closely, providing insights into how the model is learning over time.
+
+- **save_total_limit=1 & load_best_model_at_end=True**: These parameters are used to manage the storage of model checkpoints. **save_total_limit=1** ensures that only the most recent checkpoint is saved, conserving disk space. **load_best_model_at_end=True** ensures that the best-performing model, based on evaluation metrics, is loaded at the end of training, rather than just the final epoch's model.
 
 ## Training the model
 The following code defines the Trainer for fine-tuning the BERT model, incorporating early stopping to prevent overfitting
@@ -73,7 +88,9 @@ TrainOutput(global_step=1200, training_loss=0.4239166291554769, metrics={'train_
 
 ## Results
 ### Classification Report
-The model performs particularly well in predicting positive and negative sentiments, with precision scores of 0.84 and 0.88, respectively. The F1-scores for positive and negative sentiments are also high, at 0.83 and 0.79, indicating a good balance between precision and recall. The neutral sentiment, while slightly lower in precision (0.63), still achieves a recall of 0.76 and an F1-score of 0.69.
+The model performs particularly well in predicting instances of positive and negative sentiments, achieving precision scores of 0.84 and 0.88, respectively. This indicates a high level of confidence in the model's ability to correctly identify these classes. The F1-scores for positive and negative sentiments are also strong, at 0.83 and 0.79, respectively, reflecting a good balance between precision and recall.
+
+For neutral sentiment, while the precision is slightly lower at 0.63, the model still achieves a recall of 0.76 and an F1-score of 0.69. This means that while the predictions for neutral sentiment aren't as precise, the model is still correctly identifying a large portion of neutral instances.
 
 ```
               
